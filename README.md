@@ -1,29 +1,16 @@
-# classfinder
+# Classfinder Replacement
 
-## Project setup
+This is an attempt at replacing that horrible WWU classfinder site with a better front end.
+
+Currently works by scraping the old pages, so it's going to take a while to set up a proper connector.
+
+If you have ideas or feedback, feel free to create an issue.
+
+### Project setup
 ```
 yarn install
 ```
-
-### Compiles and hot-reloads for development
+### Development
 ```
-yarn run serve
+yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
