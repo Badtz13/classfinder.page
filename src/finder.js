@@ -1,5 +1,7 @@
 import fetch from 'node-fetch';
 
+const fields = ['Course', 'Name', 'CRN', 'Cap', 'Enrolled', 'Available', 'Instructor', 'Dates', 'GUR', 'Time', 'Room', 'Credits', 'Price', 'Lab Time', 'Lab Room', 'Requirements'];
+
 
 function parseData(body) {
   // convert body to html dom, then select all tr elements in page, and cut off the header row(s)
@@ -47,6 +49,8 @@ function parseData(body) {
   const betterSplit = [];
   let currentRow = [];
 
+  console.clear();
+
   // loop through and chunk array into class sized parrts
   for (let i = 1; i < parsedData.length; i += 1) {
     // if it matches the regex 3-4 letters, 3 numbers
@@ -55,12 +59,35 @@ function parseData(body) {
     // and its not the first element in the list
     // then chunk it as a complete class
     if (/([A-Z]{3,4} \d{3})$/.test(parsedData[i]) && parsedData[i].length < 9 && parsedData[i - 1] !== ' MJ' && i !== 1) { // i % 18 === 0
-      betterSplit.push(currentRow);
+      let fieldIndex = 0;
+      const fieldedRow = {};
+      // loop through each row and assign a field to each cell
+      currentRow.forEach((cell) => {
+        // if the current field is the gur one and its too long to be a gur,
+        // then the class doesn't give any gurs so skip it
+        if (fields[fieldIndex] === 'GUR' && cell.length > 8) {
+          fieldIndex += 1;
+        }
+
+        // if we've reached the end of the fields, add everything else to other
+        if (fieldIndex >= fields.length) {
+          if (fieldedRow.other) {
+            fieldedRow.other += `,${cell}`;
+          } else {
+            fieldedRow.other = cell;
+          }
+        } else { // if we didn't reach the end yet, assign the value to the field and increment
+          fieldedRow[fields[fieldIndex]] = cell;
+          fieldIndex += 1;
+        }
+      });
+      betterSplit.push(fieldedRow);
       currentRow = [];
     }
     currentRow.push(parsedData[i]);
   }
   console.log(betterSplit);
+  console.log(betterSplit[0]);
   return body;
 }
 
