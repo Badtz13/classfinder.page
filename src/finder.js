@@ -2,33 +2,38 @@ import fetch from 'node-fetch';
 
 
 function parseData(body) {
+  // convert body to html dom, then select all tr elements in page, and cut off the header row(s)
   const parser = new DOMParser();
   const doc = parser.parseFromString(body, 'text/html');
   const tbody = doc.getElementsByTagName('tbody')[1];
   const rows = Array.from(tbody.getElementsByTagName('tr')).slice(3);
   const parsedData = [];
 
+  // loop through each row, convert each cell to something usable
   rows.forEach((row) => {
-    let cells = Array.from(row.cells).map((a) => {
+    const cells = Array.from(row.cells).map((a) => {
+      // if there is text directly in the cell, use that as value
       if (a.textContent) {
         return a.textContent;
-      } if (a.firstChild) {
+      }
+      // if there is no text content and there is a child element
+      if (a.firstChild) {
+        // all tds at the point in the dom are empty, so if it's not a td return the value
         if (a.firstChild.nodeName !== 'TD') {
           return a.firstChild.value;
         }
       }
       return undefined;
-    });
-
-    cells = cells.filter((a) => {
-      if (/\S/.test(a)) {
-        if (a !== undefined && a != null) {
+    }).filter((a) => { // filter remaining cells
+      if (/\S/.test(a)) { // if the cell isn't only spaces
+        if (a !== undefined && a != null) { // if the cell has content
           return true;
         }
       }
       return false;
     });
-    if (cells.length > 0) {
+
+    if (cells.length > 0) { // make sure what's left isn't an empty row
       parsedData.push(cells);
     }
   });
