@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-const fields = ['Course', 'Name', 'CRN', 'Cap', 'Enrolled', 'Available', 'Instructor', 'Dates', 'GUR', 'Time', 'Room', 'Credits', 'Price', 'Lab Time', 'Lab Room', 'Requirements'];
+const fields = ['Course', 'Name', 'CRN', 'Cap', 'Enrolled', 'Available', 'Instructor', 'Dates', 'GUR', 'Time', 'Room', 'Credits', 'Price', 'LabTime', 'LabRoom', 'Requirements'];
 
 function parseData(body) {
   // convert body to html dom, then select all tr elements in page, and cut off the header row(s)
@@ -66,16 +66,16 @@ function parseData(body) {
       // if one of the optional fields' values is too long, skip it
       if ((fields[fieldIndex] === 'GUR' && cell.length > 8) || cell === 'TBA') {
         fieldIndex += 1;
-      } else if (fields[fieldIndex] === 'Lab Time' && !/([A-Z]{1,2} \d{1,2}:\d{1,2})/.test(cell)) {
+      } else if (fields[fieldIndex] === 'LabTime' && !/([A-Z]{1,2} {2}\d{1,2}:\d{1,2})/.test(cell)) {
         fieldIndex += 2;
       }
 
       // if we've reached the end of the fields, add everything else to other
       if (fieldIndex >= fields.length) {
-        if (fieldedRow.other) {
-          fieldedRow.other += `,${cell}`;
+        if (fieldedRow.Other) {
+          fieldedRow.Other += `,${cell}`;
         } else {
-          fieldedRow.other = cell;
+          fieldedRow.Other = cell;
         }
       } else { // if we didn't reach the end yet, assign the value to the field and increment
         fieldedRow[fields[fieldIndex]] = cell;
