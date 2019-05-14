@@ -1,19 +1,22 @@
 <template>
-  <div class="class" :id="data.CRN">
-    <div style="grid-area:Course">{{data.Course}}</div>
-    <div style="grid-area:Name">{{data.Name}}</div>
-    <div style="grid-area:Instructor">{{data.Instructor}}</div>
-    <div style="grid-area:GUR">{{data.GUR}}</div>
-    <div style="grid-area:Enrolled">{{data.Enrolled}}/{{data.Cap}}</div>
-    <div style="grid-area:Credits">{{data.Credits}} </div>
-    <!-- <div style="grid-area:Price"> {{data.Price}}</div> -->
-    <div style="grid-area:Room">{{data.Room}}</div>
-    <div style="grid-area:Time">{{data.Time}}</div>
-    <div style="grid-area:Dates">{{data.Dates}}</div>
-    <div v-if="data.LabRoom" style="grid-area:LabRoom">{{data.LabRoom}}</div>
-    <div v-if="data.LabTime" style="grid-area:LabTime">{{data.LabTime}}</div>
-    <div style="grid-area:Requirements">{{data.Requirements}} {{data.Other}}</div>
-  </div>
+  <article class="class" :id="data.CRN">
+    <div class="Course">{{data.Course}}</div>
+    <div class="Name">{{data.Name}}</div>
+    <div class="Instructor">{{data.Instructor}}</div>
+    <div v-if="data.GUR" class="GUR">GUR: {{data.GUR}}</div>
+    <div v-if="data.Enrolled == data.Cap" class="Enrolled red">
+      {{data.Enrolled}}/{{data.Cap}} Enrolled
+    </div>
+    <div v-else class="Enrolled">{{data.Enrolled}}/{{data.Cap}} Enrolled</div>
+    <div class="Credits">{{data.Credits}} Credits</div>
+    <!-- <div class="Price"> {{data.Price}}</div> -->
+    <div class="Room">{{data.Room}}</div>
+    <div class="Time">{{data.Time}}</div>
+    <div class="Dates">{{data.Dates}}</div>
+    <div v-if="data.LabRoom" class="LabRoom">{{data.LabRoom}}</div>
+    <div v-if="data.LabTime" class="LabTime">{{data.LabTime}}</div>
+    <div class="Requirements">Requirements: {{data.Requirements}} {{data.Other}}</div>
+  </article>
 </template>
 
 <script>
@@ -33,7 +36,7 @@ export default {
   width: 100%;
   /* height: 200px; */
   display: grid;
-  grid-template-columns: auto 50% auto;
+  grid-template-columns: .5fr 1.5fr 1fr;
   grid-template-areas:
     "Course Name Instructor"
     "GUR Enrolled Credits"
@@ -44,12 +47,32 @@ export default {
   margin: 16px auto;
 }
 
-.class > div {
-  height: 32px;
+div {
   font-size: 16px;
-  line-height: 2;
   text-align: left;
-  padding: 0px 8px;
+  padding: 8px;
 }
+
+.Course,.Name,.Instructor {
+  font-size: 20px;
+  border-bottom: 1px solid lightseagreen;
+}
+
+.red{
+  color: #F55;
+}
+
+.Course { grid-area: Course; }
+.Name { grid-area: Name; }
+.Instructor { grid-area: Instructor; }
+.GUR { grid-area: GUR; }
+.Enrolled { grid-area: Enrolled; }
+.Credits { grid-area: Credits; }
+.Room { grid-area: Room; }
+.Time { grid-area: Time; }
+.Dates { grid-area: Dates; }
+.LabRoom { grid-area: LabRoom; }
+.LabTime { grid-area: LabTime; }
+.Requirements { grid-area: Requirements; }
 
 </style>
