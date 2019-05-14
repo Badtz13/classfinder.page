@@ -7,7 +7,7 @@ function parseData(body) {
   const doc = parser.parseFromString(body, 'text/html');
   const tbody = doc.getElementsByTagName('tbody')[1];
   const rows = Array.from(tbody.getElementsByTagName('tr')).slice(3);
-  const parsedData = [];
+  let parsedData = [];
 
   // loop through each row, convert each cell to something usable
   rows.forEach((row) => {
@@ -26,7 +26,7 @@ function parseData(body) {
       return undefined;
     }).filter((a) => { // filter remaining cells
       if (/\S/.test(a)) { // if the cell isn't only spaces
-        if (a !== undefined && a != null && a !== 'Prerequisites:') { // if the cell has content
+        if (a !== undefined && a != null && a !== 'Prerequisites:' && a !== 'CLOSED:   Waitlist Available ') { // if the cell has content
           return true;
         }
       }
@@ -38,7 +38,29 @@ function parseData(body) {
     }
   });
 
-  console.table(parsedData);
+  // flatten multidimensional array into single array of all elements
+  parsedData = parsedData.flat();
+
+  // remove first blank element
+  parsedData.unshift('');
+
+  const betterSplit = [];
+  let currentRow = [];
+
+  // loop through and chunk array into class sized parrts
+  for (let i = 1; i < parsedData.length; i += 1) {
+    // if it matches the regex 3-4 letters, 3 numbers
+    // and its not longer than the length of the class code
+    // and it's not one of the requirements
+    // and its not the first element in the list
+    // then chunk it as a complete class
+    if (/([A-Z]{3,4} \d{3})$/.test(parsedData[i]) && parsedData[i].length < 9 && parsedData[i - 1] !== ' MJ' && i !== 1) { // i % 18 === 0
+      betterSplit.push(currentRow);
+      currentRow = [];
+    }
+    currentRow.push(parsedData[i]);
+  }
+  console.log(betterSplit);
   return body;
 }
 
