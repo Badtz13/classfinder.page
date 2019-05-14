@@ -7,6 +7,9 @@ function parseData(body) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(body, 'text/html');
   const tbody = doc.getElementsByTagName('tbody')[1];
+  if (tbody === undefined) {
+    return { body, undefined };
+  }
   const rows = Array.from(tbody.getElementsByTagName('tr')).slice(3);
   let parsedData = [];
 

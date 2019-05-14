@@ -1,9 +1,16 @@
 <template>
-  <div class="results">
+  <div class="results" v-if="this.resBody" >
     <!-- <div v-html="resBody"></div> -->
-    <h1>Showing results for</h1>
-    <h3>{{this.$route.params.subject}} in {{this.termName}} term</h3>
-    <Class v-for="item in resData" :key="item.CRN" :data="item"></Class>
+    <div v-if="this.resData === undefined">
+      <h3> No results found</h3>
+    </div>
+    <div v-else>
+      <h1>Showing results for</h1>
+      <h3>{{this.$route.params.subject}} in {{this.termName}} term</h3>
+      <Class v-for="item in resData" :key="item.CRN" :data="item"></Class>
+    </div>
+  </div>
+  <div v-else class="donut">
   </div>
 </template>
 
@@ -47,4 +54,23 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
+
+@keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.donut {
+  display: inline-block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: lightseagreen;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: donut-spin 1.2s linear infinite;
+}
+
 </style>

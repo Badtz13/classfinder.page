@@ -36,10 +36,13 @@ export default {
 <style scoped>
 
 div {
-  width: 80%;
-  height: 200px;
+  width: 400px;
+  height: 120px;
   margin: auto;
   box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+}
+h3 {
+  padding-top: 26px;
 }
 
 </style>
