@@ -2,7 +2,6 @@ import fetch from 'node-fetch';
 
 const fields = ['Course', 'Name', 'CRN', 'Cap', 'Enrolled', 'Available', 'Instructor', 'Dates', 'GUR', 'Time', 'Room', 'Credits', 'Price', 'Lab Time', 'Lab Room', 'Requirements'];
 
-
 function parseData(body) {
   // convert body to html dom, then select all tr elements in page, and cut off the header row(s)
   const parser = new DOMParser();
@@ -46,49 +45,46 @@ function parseData(body) {
   // remove first blank element
   parsedData.unshift('');
 
-  const betterSplit = [];
+  const labeledChunks = [];
+  const chunks = [];
   let currentRow = [];
 
-  console.clear();
-
-  // loop through and chunk array into class sized parrts
   for (let i = 1; i < parsedData.length; i += 1) {
-    // if it matches the regex 3-4 letters, 3 numbers
-    // and its not longer than the length of the class code
-    // and it's not one of the requirements
-    // and its not the first element in the list
-    // then chunk it as a complete class
-    if (/([A-Z]{3,4} \d{3})$/.test(parsedData[i]) && parsedData[i].length < 9 && parsedData[i - 1] !== ' MJ' && i !== 1) { // i % 18 === 0
-      let fieldIndex = 0;
-      const fieldedRow = {};
-      // loop through each row and assign a field to each cell
-      currentRow.forEach((cell) => {
-        // if the current field is the gur one and its too long to be a gur,
-        // then the class doesn't give any gurs so skip it
-        if (fields[fieldIndex] === 'GUR' && cell.length > 8) {
-          fieldIndex += 1;
-        }
-
-        // if we've reached the end of the fields, add everything else to other
-        if (fieldIndex >= fields.length) {
-          if (fieldedRow.other) {
-            fieldedRow.other += `,${cell}`;
-          } else {
-            fieldedRow.other = cell;
-          }
-        } else { // if we didn't reach the end yet, assign the value to the field and increment
-          fieldedRow[fields[fieldIndex]] = cell;
-          fieldIndex += 1;
-        }
-      });
-      betterSplit.push(fieldedRow);
+    if (/([A-Z]{3,4} \d{3})/.test(parsedData[i]) && parsedData[i].length < 9 && !/([A-Z]{3,4} \d{3})/.test(parsedData[i + 1])) {
+      chunks.push(currentRow);
       currentRow = [];
     }
     currentRow.push(parsedData[i]);
   }
-  console.log(betterSplit);
-  console.log(betterSplit[0]);
-  return body;
+  chunks.push(currentRow);
+
+  chunks.slice(1).forEach((element) => {
+    let fieldIndex = 0;
+    const fieldedRow = {};
+    // loop through each row and assign a field to each cell
+    element.forEach((cell) => {
+      // if one of the optional fields' values is too long, skip it
+      if ((fields[fieldIndex] === 'GUR' && cell.length > 8) || cell === 'TBA') {
+        fieldIndex += 1;
+      } else if (fields[fieldIndex] === 'Lab Time' && !/([A-Z]{1,2} \d{1,2}:\d{1,2})/.test(cell)) {
+        fieldIndex += 2;
+      }
+
+      // if we've reached the end of the fields, add everything else to other
+      if (fieldIndex >= fields.length) {
+        if (fieldedRow.other) {
+          fieldedRow.other += `,${cell}`;
+        } else {
+          fieldedRow.other = cell;
+        }
+      } else { // if we didn't reach the end yet, assign the value to the field and increment
+        fieldedRow[fields[fieldIndex]] = cell;
+        fieldIndex += 1;
+      }
+    });
+    labeledChunks.push(fieldedRow);
+  });
+  return { body, labeledChunks };
 }
 
 // function for fetching unparsed data from classfinder
