@@ -6,7 +6,7 @@ Currently works by scraping the old pages, so it's going to take a while to set 
 
 If you have ideas or feedback, feel free to create an issue.
 
-Currently hosted on [firebase](https://classfinder-e0045.firebaseapp.com/)
+Currently hosted at [https://classfinder.page/](https://classfinder.page/)
 
 ### Project setup
 ```
