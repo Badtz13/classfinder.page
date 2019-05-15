@@ -39,7 +39,7 @@ div {
   width: 400px;
   height: 120px;
   margin: auto;
-  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--light-shadow);
 }
 h3 {
   padding-top: 26px;
