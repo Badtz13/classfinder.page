@@ -10,17 +10,19 @@
       <Class v-for="item in resData" :key="item.CRN" :data="item"></Class>
     </div>
   </div>
-  <div v-else class="donut"></div>
+  <Donut v-else/>
 </template>
 
 <script>
 import finder from '@/finder';
 import Class from '@/components/Class.vue';
+import Donut from '@/components/Donut.vue';
 
 export default {
   name: 'results',
   components: {
     Class,
+    Donut,
   },
   data() {
     return {
@@ -54,24 +56,5 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-@keyframes donut-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.donut {
-  display: block;
-  margin: 50px auto;
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: var(--primary);
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: donut-spin 1.2s linear infinite;
 }
 </style>
