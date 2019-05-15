@@ -43,7 +43,7 @@ export default {
     "Room Time Dates"
     "LabRoom LabTime ."
     "Requirements Requirements Requirements";
-  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--light-shadow);
   margin: 16px auto;
 }
 
@@ -55,7 +55,7 @@ div {
 
 .Course,.Name,.Instructor {
   font-size: 20px;
-  border-bottom: 1px solid lightseagreen;
+  border-bottom: 1px solid var(--primary);
 }
 
 .red{

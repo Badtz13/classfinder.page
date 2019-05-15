@@ -66,7 +66,7 @@ export default {
 .donut {
   display: inline-block;
   border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: lightseagreen;
+  border-left-color: var(--primary);
   border-radius: 50%;
   width: 30px;
   height: 30px;

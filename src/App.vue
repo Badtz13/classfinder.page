@@ -9,23 +9,29 @@
 </template>
 
 <style>
+:root {
+  --primary: orchid;
+  --primary-text: #fff;
+  --light-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+  --hover-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
+}
+* {
+  box-sizing: border-box;
+  font-family: "PT Sans", sans-serif;
+  font-weight: normal;
+
+}
+h1 {
+  color: var(--primary);
+}
+html,
+body,
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+#app {
   text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: black;
-}
-
-#nav a.router-link-exact-active {
-  color: lightseagreen;
 }
 </style>
