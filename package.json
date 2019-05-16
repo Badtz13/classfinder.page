@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "node-fetch": "^2.5.0",
+    "randomcolor": "^0.5.4",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
