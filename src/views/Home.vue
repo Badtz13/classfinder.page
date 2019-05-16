@@ -1,9 +1,8 @@
 <template>
-  <div class="home">
+  <main>
     <h1>Home</h1>
-    <!-- <router-link to="/results/Summer/CSCI">Results</router-link> -->
     <Search/>
-  </div>
+  </main>
 </template>
 <script>
 import Search from '@/components/Search.vue';

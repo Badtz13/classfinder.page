@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <main>
     <h1>About</h1>
     <p>
       Welcome! This site is an attempt at replacing the
@@ -9,7 +9,7 @@
       Please report any issues or suggest features on our
       <a href="https://github.com/MiloCodes/WWU-Classfinder-Replacement/issues/new">github.</a>
     </p>
-  </div>
+  </main>
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-  <div class="results" v-if="this.resBody">
+  <main v-if="this.resBody">
     <!-- <div v-html="resBody"></div> -->
     <div v-if="this.resData === undefined">
       <h3>No results found</h3>
@@ -9,7 +9,7 @@
       <h3>{{this.$route.params.subject}} in {{this.termName}} term</h3>
       <Class v-for="item in resData" :key="item.CRN" :data="item"></Class>
     </div>
-  </div>
+  </main>
   <Donut v-else/>
 </template>
 
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-.results {
+main {
   width: 80%;
   margin: auto;
   display: flex;

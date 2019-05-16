@@ -1,6 +1,7 @@
 <template>
-  <article class="class" :id="data.CRN">
+  <article>
     <div class="colorbar" :style="{ backgroundColor: data.Color }"></div>
+    <div class="quickbuttons"></div>
     <div class="Course">{{data.Course}}</div>
     <div class="Name">{{data.Name}}</div>
     <div class="Instructor">{{data.Instructor}}</div>
@@ -33,17 +34,17 @@ export default {
 </script>
 
 <style scoped>
-.class {
+article {
   width: 100%;
   /* height: 200px; */
   display: grid;
   grid-template-columns:8px .5fr 1.5fr 1fr;
   grid-template-areas:
-    "colorbar Course Name Instructor"
-    "colorbar GUR Enrolled Credits"
-    "colorbar Room Time Dates"
-    "colorbar LabRoom LabTime ."
-    "colorbar Requirements Requirements Requirements";
+    "colorbar Course Name Instructor quickbuttons"
+    "colorbar GUR Enrolled Credits quickbuttons"
+    "colorbar Room Time Dates quickbuttons"
+    "colorbar LabRoom LabTime . quickbuttons"
+    "colorbar Requirements Requirements Requirements quickbuttons";
   box-shadow: var(--light-shadow);
   margin: 16px auto;
 }
@@ -64,6 +65,7 @@ div:not(.colorbar) {
 }
 
 .colorbar {grid-area: colorbar; }
+.quickbuttons {grid-area: quickbuttons; }
 .Course { grid-area: Course; }
 .Name { grid-area: Name; }
 .Instructor { grid-area: Instructor; }

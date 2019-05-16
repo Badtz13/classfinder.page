@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <nav>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
-    </div>
+    </nav>
     <router-view/>
   </div>
 </template>
@@ -14,6 +14,7 @@
   --light-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
   --hover-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
 }
+
 * {
   box-sizing: border-box;
   font-family: "PT Sans", sans-serif;
@@ -42,12 +43,13 @@ a {
   text-decoration: underline;
   color: var(--primary);
 }
-#nav {
+nav {
   width: 30%;
   margin: auto;
   display:inline-block;
 }
-#nav>a {
+nav>a {
   padding: 16px;
+  line-height: 2;
 }
 </style>
