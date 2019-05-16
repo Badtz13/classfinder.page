@@ -44,7 +44,7 @@ a {
   color: var(--primary);
 }
 nav {
-  width: 30%;
+  width: 300px;
   margin: auto;
   display:inline-block;
 }
