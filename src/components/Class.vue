@@ -17,7 +17,9 @@
     <div class="Dates">{{data.Dates}}</div>
     <div v-if="data.LabRoom" class="LabRoom">{{data.LabRoom}}</div>
     <div v-if="data.LabTime" class="LabTime">{{data.LabTime}}</div>
-    <div class="Requirements">Requirements: {{data.Requirements}} {{data.Other}}</div>
+    <div v-if="data.Requirements || data.Other" class="Requirements">
+      Requirements: {{data.Requirements}} {{data.Other}}
+    </div>
   </article>
 </template>
 
