@@ -5,8 +5,7 @@
       <h3>No results found</h3>
     </div>
     <div v-else>
-      <h1>Showing results for</h1>
-      <h3>{{this.$route.params.subject}} in {{this.termName}} term</h3>
+      <h1>{{this.$route.params.subject}} in {{this.termName}} term</h1>
       <Class v-for="item in resData" :key="item.CRN" :data="item"></Class>
     </div>
   </main>
@@ -56,5 +55,10 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  main {
+    width: calc(100% - 32px);
+  }
 }
 </style>

@@ -38,7 +38,8 @@ article {
   width: 100%;
   /* height: 200px; */
   display: grid;
-  grid-template-columns:8px .5fr 1.5fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns:8px .5fr 1.5fr 1fr 32px;
   grid-template-areas:
     "colorbar Course Name Instructor quickbuttons"
     "colorbar GUR Enrolled Credits quickbuttons"
@@ -49,19 +50,40 @@ article {
   margin: 16px auto;
 }
 
-div:not(.colorbar) {
+div {
   font-size: 16px;
   text-align: left;
   padding: 8px;
 }
 
-.Course,.Name,.Instructor {
+.colorbar,.quickbuttons{
+  padding: 0px;
+}
+
+.Course, .Name, .Instructor {
   font-size: 20px;
+  line-height: 20px;
+  padding: 6px 8px;
   border-bottom: 1px solid var(--primary);
 }
 
-.red{
+.red {
   color: #F55;
+}
+
+@media only screen and (max-width: 600px) {
+  article {
+    grid-template-columns:auto auto auto;
+    grid-template-areas:
+    "Course Name Instructor"
+    "GUR Enrolled Credits"
+    "Room Time Dates"
+    "LabRoom LabTime ."
+    "Requirements Requirements Requirements";
+  }
+  .quickbuttons,.colorbar {
+    display: none;
+  }
 }
 
 .colorbar {grid-area: colorbar; }
