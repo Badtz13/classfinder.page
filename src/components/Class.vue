@@ -1,6 +1,7 @@
 <template>
   <article>
-    <div class="colorbar" :style="{ backgroundColor: this.colors[data.ClassId] }"></div>
+    <!-- <div class="colorbar" :style="{ backgroundColor: this.colors[data.ClassId] }"></div> -->
+    <div class="colorbar"></div>
     <div class="quickbuttons"></div>
     <div class="Course">{{data.Course}}</div>
     <div class="Name">{{data.Name}}</div>
@@ -49,7 +50,7 @@ article {
   /* height: 200px; */
   display: grid;
   grid-template-rows: auto auto auto auto;
-  grid-template-columns: 8px 0.5fr 1.5fr 1fr 32px;
+  grid-template-columns: 8px 0.5fr 1.5fr 1fr 8px;
   grid-template-areas:
     "colorbar Course Name Instructor quickbuttons"
     "colorbar GUR Enrolled Credits quickbuttons"
