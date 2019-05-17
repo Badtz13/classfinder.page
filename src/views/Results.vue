@@ -6,7 +6,6 @@
 </template>
 
 <script>
-
 import Class from '@/components/Class.vue';
 
 export default {

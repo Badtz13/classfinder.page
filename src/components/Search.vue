@@ -11,9 +11,11 @@
       </select>
       <button @click="search()">Search</button>
     </form>
+    <!-- if the response contained no classes show error-->
     <span v-if="this.resData === undefined">
       <h3>There are no classes that match that search</h3>
     </span>
+    <!-- or if the request has just been made show loading animation -->
     <Donut v-else-if="this.requestMade"/>
   </section>
 </template>
@@ -38,6 +40,7 @@ export default {
   },
   methods: {
     async search() {
+      // check to make sure form has correct elements
       if (this.Term && this.Subject) {
         this.resData = '';
         this.requestMade = true;
@@ -47,12 +50,15 @@ export default {
           Summer: 3,
           Fall: 4,
         };
+        // call the parser with the form data
         const response = await finder(
           this.Subject,
           terms[this.Term],
         );
+        // store data to stop loading animation/show error if empty
         this.resData = response.labeledChunks;
         this.requestMade = false;
+        // if there were results, load results page
         if (this.resData !== undefined) {
           this.$router.push({
             name: 'results',
