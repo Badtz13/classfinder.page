@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import randomColor from 'randomcolor';
 
 const fields = ['Course', 'Name', 'CRN', 'Cap', 'Enrolled', 'Available', 'Instructor', 'Dates', 'GUR', 'Time', 'Room', 'Credits', 'Price', 'LabTime', 'LabRoom', 'Requirements'];
 
@@ -52,8 +51,8 @@ function parseData(body) {
   const labeledChunks = [];
   const chunks = [];
   let currentRow = [];
-  let currentColor = '';
   const classList = [];
+  let currentId = 0;
 
   for (let i = 1; i < parsedData.length; i += 1) {
     if (/([A-Z]{3,4} \d{3})/.test(parsedData[i]) && parsedData[i].length < 9 && !/([A-Z]{3,4} \d{3})/.test(parsedData[i + 1])) {
@@ -89,14 +88,10 @@ function parseData(body) {
       }
     });
     if (!classList.includes(fieldedRow.Name)) {
-      // eslint-disable-next-line no-bitwise
-      currentColor = randomColor({
-        luminosity: 'bright',
-        hue: 'random',
-      });
+      currentId += 1;
       classList.push(fieldedRow.Name);
     }
-    fieldedRow.Color = currentColor;
+    fieldedRow.ClassId = currentId;
     labeledChunks.push(fieldedRow);
   });
 
