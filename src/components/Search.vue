@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <h3>Search for a class</h3>
     <form action="javascript:void(0);" name="main">
       <input type="text" v-model="Subject" placeholder="CSCI" required>
@@ -7,30 +7,58 @@
         <option value="Winter">Winter</option>
         <option value="Spring">Spring</option>
         <option value="Summer">Summer</option>
-        <option value="Fall" selected >Fall</option>
+        <option value="Fall" selected>Fall</option>
       </select>
       <button @click="search()">Search</button>
     </form>
-  </div>
+    <span v-if="this.resData === undefined">
+      <h3>There are no classes that match that search</h3>
+    </span>
+    <Donut v-else-if="this.requestMade"/>
+  </section>
 </template>
 
 <script>
+import Donut from '@/components/Donut.vue';
+import finder from '@/finder';
+
 export default {
   name: 'Search',
+  components: {
+    Donut,
+  },
   props: {},
   data() {
     return {
       Subject: '',
       Term: '',
+      resData: {},
+      requestMade: false,
     };
   },
   methods: {
-    search() {
+    async search() {
       if (this.Term && this.Subject) {
-        this.$router.push({
-          name: 'results',
-          params: { term: this.Term, subject: this.Subject },
-        });
+        this.resData = '';
+        this.requestMade = true;
+        const terms = {
+          Winter: 1,
+          Spring: 2,
+          Summer: 3,
+          Fall: 4,
+        };
+        const response = await finder(
+          this.Subject,
+          terms[this.Term],
+        );
+        this.resData = response.labeledChunks;
+        this.requestMade = false;
+        if (this.resData !== undefined) {
+          this.$router.push({
+            name: 'results',
+            params: { term: this.Term, subject: this.Subject, data: response.labeledChunks },
+          });
+        }
       }
     },
   },
@@ -42,9 +70,9 @@ export default {
 </script>
 
 <style scoped>
-div {
+section {
   width: 400px;
-  height: 120px;
+  height: 250px;
   margin: auto;
   box-shadow: var(--light-shadow);
 }
