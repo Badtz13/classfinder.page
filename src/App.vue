@@ -11,8 +11,8 @@
 <style>
 :root {
   --primary: orchid;
-  --light-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
-  --hover-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
+  --light-shadow: 1px 3px 10px rgba(0, 0, 0, 0.3);
+  --hover-shadow: 2px 6px 30px rgba(0, 0, 0, 0.4);
 }
 
 * {

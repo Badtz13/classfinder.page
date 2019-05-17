@@ -10,7 +10,12 @@
       {{data.Enrolled}}/{{data.Cap}} Enrolled
     </div>
     <div v-else class="Enrolled">{{data.Enrolled}}/{{data.Cap}} Enrolled</div>
-    <div class="Credits">{{data.Credits}} Credits</div>
+    <div class="Credits" v-if="data.Credits">
+      {{data.Credits}} Credits
+    </div>
+    <div class="Credits" v-else>
+      0 Credits
+    </div>
     <!-- <div class="Price"> {{data.Price}}</div> -->
     <div class="Room">{{data.Room}}</div>
     <div class="Time">{{data.Time}}</div>
