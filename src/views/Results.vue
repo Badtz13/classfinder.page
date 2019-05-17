@@ -13,6 +13,11 @@ export default {
   components: {
     Class,
   },
+  mounted() {
+    if (!this.$route.params.data) {
+      this.$router.push({ name: 'home' });
+    }
+  },
 };
 </script>
 
