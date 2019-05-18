@@ -84,7 +84,7 @@ export default {
 
 <style scoped>
 section {
-  width: 80%;
+  /* width: 80%; */
   margin: auto;
   display: flex;
   flex-direction: column;

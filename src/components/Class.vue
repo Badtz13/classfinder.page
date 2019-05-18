@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 article {
-  width: 100%;
+  width: 600px;
   /* height: 200px; */
   display: grid;
   grid-template-rows: auto auto auto auto;
@@ -87,6 +87,7 @@ div {
 
 @media only screen and (max-width: 600px) {
   article {
+    width: 100%;
     grid-template-columns: auto auto auto;
     grid-template-areas:
       "Course Name Instructor"
