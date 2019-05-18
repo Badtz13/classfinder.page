@@ -9,6 +9,7 @@
 </template>
 
 <style>
+
 :root {
   --primary: #7d00a0;
   --light-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
@@ -17,9 +18,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: "PT Sans", sans-serif;
+  font-family: 'Noto Sans', "Helvetica", "Arial", sans-serif;
   font-weight: normal;
-
 }
 
 h1 {

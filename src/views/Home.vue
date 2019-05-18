@@ -3,13 +3,17 @@
     <h1>WWU Classfinder Replacement</h1>
     <!-- <h3>Search for a class</h3> -->
     <form action="javascript:void(0);" name="main">
-      <input type="text" v-model="Subject" placeholder="CSCI" required>
-      <select v-model="Term" required>
-        <option value="Winter">Winter</option>
-        <option value="Spring">Spring</option>
-        <option value="Summer">Summer</option>
-        <option value="Fall" selected>Fall</option>
-      </select>
+      <label>Course ID
+        <input type="text" v-model="Subject" placeholder="CSCI" required>
+      </label>
+      <label> Term
+        <select v-model="Term" required>
+          <option value="Winter">Winter</option>
+          <option value="Spring">Spring</option>
+          <option value="Summer">Summer</option>
+          <option value="Fall" selected>Fall</option>
+        </select>
+      </label>
       <button @click="setParams()">Search</button>
     </form>
     <Donut v-if="this.requestMade"/>
