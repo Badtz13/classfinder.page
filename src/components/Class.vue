@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      colors: ['#fde0dd', '#f3d4d7', '#eac8d1', '#e1bccb', '#d7b0c5', '#cda5be', '#c499b8', '#bb8eb2', '#b183ac', '#a878a6', '#9f6ca0', '#95619a', '#8c5694', '#834c8e', '#794188', '#703682', '#662a7c', '#5d1f76', '#531070', '#49006a'],
+
     };
   },
 };
@@ -94,10 +94,24 @@ div {
       "Room Time Dates"
       "LabRoom LabTime ."
       "Requirements Requirements Requirements";
+    margin: 8px auto;
+    /* box-shadow: var(--hover-shadow); */
   }
   .quickbuttons,
   .colorbar {
     display: none;
+  }
+  div {
+    font-size: 12px;
+    text-align: left;
+    padding: 4px;
+  }
+  .Course,
+  .Name,
+  .Instructor {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 4px;
   }
 }
 
@@ -143,5 +157,4 @@ div {
 .Requirements {
   grid-area: Requirements;
 }
-
 </style>

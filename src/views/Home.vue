@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>WWU Classfinder Replacement</h1>
-    <h3>Search for a class</h3>
+    <!-- <h3>Search for a class</h3> -->
     <form action="javascript:void(0);" name="main">
       <input type="text" v-model="Subject" placeholder="CSCI" required>
       <select v-model="Term" required>
@@ -111,8 +111,13 @@ select:focus {
 }
 
 @media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+    line-height: 20px;
+  }
   section {
     width: calc(100% - 32px);
   }
+
 }
 </style>
