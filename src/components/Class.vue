@@ -71,6 +71,7 @@ div {
 .crn {
   font-size: 14px;
   color: var(--primary);
+  line-height: 1;
 }
 
 .colorbar,
