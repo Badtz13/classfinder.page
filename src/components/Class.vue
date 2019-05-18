@@ -3,7 +3,10 @@
     <!-- <div class="colorbar" :style="{ backgroundColor: this.colors[data.ClassId] }"></div> -->
     <div class="colorbar"></div>
     <div class="quickbuttons"></div>
-    <div class="Course">{{data.Course}}</div>
+    <div class="Course">
+      {{data.Course}}
+      <span class="crn">{{data.CRN}}</span>
+    </div>
     <div class="Name">{{data.Name}}</div>
     <div class="Instructor">{{data.Instructor}}</div>
     <div v-if="data.GUR" class="GUR">GUR: {{data.GUR}}</div>
@@ -37,9 +40,7 @@ export default {
     },
   },
   data() {
-    return {
-
-    };
+    return {};
   },
 };
 </script>
@@ -65,6 +66,11 @@ div {
   font-size: 16px;
   text-align: left;
   padding: 8px;
+}
+
+.crn {
+  font-size: 14px;
+  color: var(--primary);
 }
 
 .colorbar,
@@ -106,6 +112,9 @@ div {
     font-size: 12px;
     text-align: left;
     padding: 4px;
+  }
+  .crn {
+    font-size: 10px;
   }
   .Course,
   .Name,
