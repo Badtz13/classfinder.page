@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Home</h1>
+    <h1>WWU Classfinder Replacement</h1>
     <h3>Search for a class</h3>
     <form action="javascript:void(0);" name="main">
       <input type="text" v-model="Subject" placeholder="CSCI" required>
@@ -90,6 +90,26 @@ section {
   flex-direction: column;
   justify-content: center;
 }
+
+button {
+  border: 2px solid lightgrey;
+  background: white;
+}
+button:active {
+  border: 2px solid var(--primary);
+}
+
+input,
+select {
+  border: none;
+  margin: 10px;
+  border-bottom: 2px solid lightgray;
+}
+input:focus,
+select:focus {
+  border-bottom: 2px solid var(--primary);
+}
+
 @media only screen and (max-width: 600px) {
   section {
     width: calc(100% - 32px);
