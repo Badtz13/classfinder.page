@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 article {
-  width: 600px;
+  width: 70%;
   /* height: 200px; */
   display: grid;
   grid-template-rows: auto auto auto auto;
