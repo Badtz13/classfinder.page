@@ -95,12 +95,20 @@ section {
   justify-content: center;
 }
 
+button, select,input {
+  transition: border .25s ease;
+}
+
 button {
   border: 2px solid lightgrey;
   background: white;
 }
 button:active {
   border: 2px solid var(--primary);
+}
+button:hover {
+  border: 2px solid darkgrey;
+  cursor: pointer;
 }
 
 input,
@@ -112,6 +120,10 @@ select {
 input:focus,
 select:focus {
   border-bottom: 2px solid var(--primary);
+}
+
+input:hover,select:hover {
+    border-bottom: 2px solid darkgray;
 }
 
 @media only screen and (max-width: 600px) {
