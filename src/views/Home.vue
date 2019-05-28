@@ -103,12 +103,14 @@ button {
   border: 2px solid lightgrey;
   background: white;
 }
-button:active {
-  border: 2px solid var(--primary);
-}
+
 button:hover {
   border: 2px solid darkgrey;
   cursor: pointer;
+}
+
+button:active {
+  border: 2px solid var(--primary);
 }
 
 input,
@@ -117,13 +119,14 @@ select {
   margin: 10px;
   border-bottom: 2px solid lightgray;
 }
-input:focus,
-select:focus {
-  border-bottom: 2px solid var(--primary);
-}
 
 input:hover,select:hover {
     border-bottom: 2px solid darkgray;
+}
+
+input:focus,
+select:focus {
+  border-bottom: 2px solid var(--primary);
 }
 
 @media only screen and (max-width: 600px) {
