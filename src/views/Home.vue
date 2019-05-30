@@ -2,26 +2,37 @@
   <main>
     <h1>WWU Classfinder Replacement</h1>
     <!-- <h3>Search for a class</h3> -->
-    <form action="javascript:void(0);" name="main">
+    <form
+      action="javascript:void(0);"
+      name="main">
       <label>Course ID
-        <input type="text" v-model="Subject" placeholder="CSCI" required>
+        <input
+          v-model="Subject"
+          type="text"
+          placeholder="CSCI"
+          required>
       </label>
       <label> Term
-        <select v-model="Term" required>
+        <select
+          v-model="Term"
+          required>
           <option value="Winter">Winter</option>
           <option value="Spring">Spring</option>
           <option value="Summer">Summer</option>
-          <option value="Fall" selected>Fall</option>
+          <option value="Fall">Fall</option>
         </select>
       </label>
       <button @click="setParams()">Search</button>
     </form>
-    <Donut v-if="this.requestMade"/>
-    <span v-else-if="this.resData === undefined">
+    <Donut v-if="requestMade"/>
+    <span v-else-if="resData === undefined">
       <h3>There are no classes that match that search</h3>
     </span>
-    <section v-else-if="this.resBody">
-      <Class v-for="item in this.resData" :key="item.CRN" :data="item"></Class>
+    <section v-else-if="resBody">
+      <Class
+        v-for="item in resData"
+        :key="item.CRN"
+        :data="item"/>
     </section>
   </main>
 </template>
@@ -44,6 +55,17 @@ export default {
       resBody: '',
       requestMade: false,
     };
+  },
+  mounted() {
+    // this is needed to prevent firefox from not auto selecting the correct select tag
+    document.forms.main.reset();
+
+    // if route params are set, use those instead
+    if (this.$route.params.term && this.$route.params.subject) {
+      this.Term = this.$route.params.term;
+      this.Subject = this.$route.params.subject;
+      this.search();
+    }
   },
   methods: {
     setParams() {
@@ -71,17 +93,6 @@ export default {
         this.requestMade = false;
       }
     },
-  },
-  mounted() {
-    // this is needed to prevent firefox from not auto selecting the correct select tag
-    document.forms.main.reset();
-
-    // if route params are set, use those instead
-    if (this.$route.params.term && this.$route.params.subject) {
-      this.Term = this.$route.params.term;
-      this.Subject = this.$route.params.subject;
-      this.search();
-    }
   },
 };
 </script>

@@ -1,32 +1,44 @@
 <template>
   <article>
     <!-- <div class="colorbar" :style="{ backgroundColor: this.colors[data.ClassId] }"></div> -->
-    <div class="colorbar"></div>
-    <div class="quickbuttons"></div>
+    <div class="colorbar"/>
+    <div class="quickbuttons"/>
     <div class="Course">
-      {{data.Course}}
-      <span class="crn">{{data.CRN}}</span>
+      {{ data.Course }}
+      <span class="crn">{{ data.CRN }}</span>
     </div>
-    <div class="Name">{{data.Name}}</div>
-    <div class="Instructor">{{data.Instructor}}</div>
-    <div v-if="data.GUR" class="GUR">GUR: {{data.GUR}}</div>
+    <div class="Name">{{ data.Name }}</div>
+    <div class="Instructor">{{ data.Instructor }}</div>
+    <div
+      v-if="data.GUR"
+      class="GUR">GUR: {{ data.GUR }}</div>
     <div
       v-if="data.Enrolled == data.Cap"
       class="Enrolled red"
-    >{{data.Enrolled}}/{{data.Cap}} Enrolled</div>
-    <div v-else class="Enrolled">{{data.Enrolled}}/{{data.Cap}} Enrolled</div>
-    <div class="Credits" v-if="data.Credits">{{data.Credits}} Credits</div>
-    <div class="Credits" v-else>0 Credits</div>
+    >{{ data.Enrolled }}/{{ data.Cap }} Enrolled</div>
+    <div
+      v-else
+      class="Enrolled">{{ data.Enrolled }}/{{ data.Cap }} Enrolled</div>
+    <div
+      v-if="data.Credits"
+      class="Credits">{{ data.Credits }} Credits</div>
+    <div
+      v-else
+      class="Credits">0 Credits</div>
     <!-- <div class="Price"> {{data.Price}}</div> -->
-    <div class="Room">{{data.Room}}</div>
-    <div class="Time">{{data.Time}}</div>
-    <div class="Dates">{{data.Dates}}</div>
-    <div v-if="data.LabRoom" class="LabRoom">{{data.LabRoom}}</div>
-    <div v-if="data.LabTime" class="LabTime">{{data.LabTime}}</div>
+    <div class="Room">{{ data.Room }}</div>
+    <div class="Time">{{ data.Time }}</div>
+    <div class="Dates">{{ data.Dates }}</div>
+    <div
+      v-if="data.LabRoom"
+      class="LabRoom">{{ data.LabRoom }}</div>
+    <div
+      v-if="data.LabTime"
+      class="LabTime">{{ data.LabTime }}</div>
     <div
       v-if="data.Requirements || data.Other"
       class="Requirements"
-    >Requirements: {{data.Requirements}} {{data.Other}}</div>
+    >Requirements: {{ data.Requirements }} {{ data.Other }}</div>
   </article>
 </template>
 
