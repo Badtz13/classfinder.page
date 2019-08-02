@@ -1,7 +1,6 @@
 <template>
   <main>
     <h1>WWU Classfinder Replacement</h1>
-    <!-- <h3>Search for a class</h3> -->
     <form
       action="javascript:void(0);"
       name="main">
@@ -9,8 +8,16 @@
         <input
           v-model="Subject"
           type="text"
+          list="codes"
           placeholder="CSCI"
           required>
+        <datalist id="codes">
+          <option
+            v-for="code in classCodes"
+            :key="code">
+            {{ code }}
+          </option>
+        </datalist>
       </label>
       <label> Term
         <select
@@ -37,9 +44,12 @@
   </main>
 </template>
 <script>
+// import components
 import Donut from '@/components/Donut.vue';
 import Class from '@/components/Class.vue';
 import finder from '@/finder';
+// import class codes
+import codes from '@/config/codes.json';
 
 export default {
   name: 'Home',
@@ -54,6 +64,7 @@ export default {
       resData: {},
       resBody: '',
       requestMade: false,
+      classCodes: codes.codes,
     };
   },
   mounted() {
@@ -68,13 +79,13 @@ export default {
     }
   },
   methods: {
-    setParams() {
+    setParams() { // sets url parameters
       if (this.Term && this.Subject) {
         this.$router.push({ name: 'home', params: { term: this.Term, subject: this.Subject.toUpperCase() } });
         this.search();
       }
     },
-    async search() {
+    async search() { // searches for classes
       // check to make sure form has correct elements
       if (this.Term && this.Subject) {
         this.resData = '';
