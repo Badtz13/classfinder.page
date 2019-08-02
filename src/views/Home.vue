@@ -70,7 +70,7 @@ export default {
   methods: {
     setParams() {
       if (this.Term && this.Subject) {
-        this.$router.push({ name: 'home', params: { term: this.Term, subject: this.Subject } });
+        this.$router.push({ name: 'home', params: { term: this.Term, subject: this.Subject.toUpperCase() } });
         this.search();
       }
     },
@@ -86,7 +86,7 @@ export default {
           Fall: 4,
         };
         // call the parser with the form data
-        const response = await finder(this.Subject, terms[this.Term]);
+        const response = await finder(this.Subject.toUpperCase(), terms[this.Term]);
         // store data to stop loading animation/show error if empty
         this.resData = response.labeledChunks;
         this.resBody = response.body;
@@ -129,6 +129,10 @@ select {
   border: none;
   margin: 10px;
   border-bottom: 2px solid lightgray;
+}
+
+input {
+  text-transform: uppercase;
 }
 
 input:hover,select:hover {
