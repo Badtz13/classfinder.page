@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
 article {
-  width: 70%;
+  /* width: 70%; */
   /* height: 200px; */
   display: grid;
   grid-template-rows: auto auto auto auto;
@@ -71,7 +71,7 @@ article {
     "colorbar LabRoom LabTime . quickbuttons"
     "colorbar Requirements Requirements Requirements quickbuttons";
   box-shadow: var(--light-shadow);
-  margin: 16px auto;
+  margin: 16px;
 }
 
 div {

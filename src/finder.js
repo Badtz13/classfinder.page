@@ -30,7 +30,7 @@ function parseData(body) {
       return undefined;
     }).filter((a) => { // filter remaining cells
       if (/\S/.test(a)) { // if the cell isn't only spaces
-        if (a !== undefined && a != null && a !== 'Prerequisites:' && a !== 'CLOSED:   Waitlist Available ') { // if the cell has content
+        if (a !== undefined && a !== null && a !== 'Prerequisites:' && a !== 'CLOSED:   Waitlist Available ' && a !== 'CLOSED                               ') { // if the cell has content
           return true;
         }
       }

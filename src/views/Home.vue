@@ -8,16 +8,8 @@
         <input
           v-model="Subject"
           type="text"
-          list="codes"
           placeholder="CSCI"
           required>
-        <datalist id="codes">
-          <option
-            v-for="code in classCodes"
-            :key="code">
-            {{ code }}
-          </option>
-        </datalist>
       </label>
       <label> Term
         <select
@@ -26,34 +18,44 @@
           <option value="Winter">Winter</option>
           <option value="Spring">Spring</option>
           <option value="Summer">Summer</option>
-          <option value="Fall">Fall</option>
+          <option
+            value="Fall"
+            selected>
+            Fall
+          </option>
         </select>
       </label>
       <button @click="setParams()">Search</button>
     </form>
     <Donut v-if="requestMade"/>
-    <span v-else-if="resData === undefined">
+    <span v-else-if="filteredData === undefined">
       <h3>There are no classes that match that search</h3>
     </span>
     <section v-else-if="resBody">
-      <Class
-        v-for="item in resData"
-        :key="item.CRN"
-        :data="item"/>
+      <div class="class-container">
+        <Class
+          v-for="item in filteredData"
+          :key="item.CRN"
+          :data="item"/>
+      </div>
+      <aside>
+        <Filters :response="resData"/>
+      </aside>
     </section>
   </main>
 </template>
 <script>
 // import components
+import Filters from '@/components/Filters.vue';
 import Donut from '@/components/Donut.vue';
 import Class from '@/components/Class.vue';
+// import script for finding classes
 import finder from '@/finder';
-// import class codes
-import codes from '@/config/codes.json';
 
 export default {
   name: 'Home',
   components: {
+    Filters,
     Class,
     Donut,
   },
@@ -62,20 +64,19 @@ export default {
       Subject: '',
       Term: '',
       resData: {},
+      filteredData: {},
       resBody: '',
       requestMade: false,
-      classCodes: codes.codes,
     };
   },
   mounted() {
-    // this is needed to prevent firefox from not auto selecting the correct select tag
-    document.forms.main.reset();
-
     // if route params are set, use those instead
     if (this.$route.params.term && this.$route.params.subject) {
       this.Term = this.$route.params.term;
       this.Subject = this.$route.params.subject;
       this.search();
+      // this is needed to prevent firefox from not auto selecting the correct select tag
+      document.forms.main.reset();
     }
   },
   methods: {
@@ -100,9 +101,13 @@ export default {
         const response = await finder(this.Subject.toUpperCase(), terms[this.Term]);
         // store data to stop loading animation/show error if empty
         this.resData = response.labeledChunks;
+        this.filteredData = this.resData;
         this.resBody = response.body;
         this.requestMade = false;
       }
+    },
+    filterData(newData) {
+      this.filteredData = newData;
     },
   },
 };
@@ -110,11 +115,21 @@ export default {
 
 <style scoped>
 section {
-  /* width: 80%; */
+  width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 80% auto;
+}
+.class-container {
+  width: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+aside {
+  margin: 0px 16px;
 }
 
 button, select,input {
@@ -155,13 +170,17 @@ select:focus {
   border-bottom: 2px solid var(--primary);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1232px) {
   h1 {
     font-size: 20px;
     line-height: 20px;
   }
   section {
     width: calc(100% - 32px);
+    grid-template-columns: 100%;
+  }
+  aside {
+    display: none;
   }
 
 }
