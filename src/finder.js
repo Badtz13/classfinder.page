@@ -62,14 +62,13 @@ function parseData(body) {
     currentRow.push(parsedData[i]);
   }
   chunks.push(currentRow);
-
   chunks.slice(1).forEach((element) => {
     let fieldIndex = 0;
     const fieldedRow = {};
     // loop through each row and assign a field to each cell
     element.forEach((cell) => {
       // if one of the optional fields' values is too long, skip it
-      if ((fields[fieldIndex] === 'GUR' && cell.length > 8) || cell === 'TBA') {
+      if ((fields[fieldIndex] === 'GUR' && cell.length > 10) || cell === 'TBA') {
         fieldIndex += 1;
       } else if (fields[fieldIndex] === 'LabTime' && !/([A-Z]{1,2} {2}\d{1,2}:\d{1,2})/.test(cell)) {
         fieldIndex += 2;
