@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       Subject: '',
-      Term: '',
+      Term: 'Fall',
       resData: {},
       filteredData: {},
       resBody: '',
