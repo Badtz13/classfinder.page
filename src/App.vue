@@ -11,7 +11,7 @@
 <style>
 
 :root {
-  --primary: #7d00a0;
+  --primary: #0083d6;
   --light-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
   --hover-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
 }

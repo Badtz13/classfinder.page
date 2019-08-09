@@ -101,7 +101,7 @@ div {
 }
 
 .red {
-  color: #f55;
+  color: #ff6161;
 }
 
 @media only screen and (max-width: 600px) {
