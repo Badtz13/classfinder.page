@@ -93,6 +93,9 @@ function parseData(body) {
     fieldedRow.ClassId = currentId;
     labeledChunks.push(fieldedRow);
   });
+  // sort classes by course id
+  // TODO add ability for different sorts
+  labeledChunks.sort((a, b) => (parseInt(a.Course.split(' ')[1], 10) - parseInt(b.Course.split(' ')[1], 10)));
 
   return { body, labeledChunks };
 }
@@ -104,7 +107,14 @@ function parseData(body) {
 export default async function finder(subject, termNumber) {
   const year = new Date().getFullYear();
   const term = `${year}${termNumber}0`;
-  const data = `sel_subj=dummy&sel_subj=dummy&sel_gur=dummy&sel_gur=dummy&sel_attr=dummy&sel_site=dummy&sel_day=dummy&sel_open=dummy&sel_crn=&term=${term}&sel_gur=All&sel_attr=All&sel_site=All&sel_subj=${subject}&sel_inst=ANY&sel_crse=&begin_hh=0&begin_mi=A&end_hh=0&end_mi=A&sel_cdts=%25`;
+  const baseData = 'sel_subj=dummy&sel_subj=dummy&sel_gur=dummy&sel_gur=dummy&sel_attr=dummy&sel_site=dummy&sel_day=dummy&sel_open=dummy&sel_crn=&term=';
+  let data = `${baseData + term}&sel_gur=All&sel_attr=All&sel_site=All`;
+  const subjectList = subject.split(',');
+  subjectList.forEach((item) => {
+    data += `&sel_subj=${item}`;
+  });
+
+  data += '&sel_inst=ANY&sel_crse=&begin_hh=0&begin_mi=A&end_hh=0&end_mi=A&sel_cdts=%25';
 
   const request = new Request('https://cors-anywhere.herokuapp.com/https://admin.wwu.edu/pls/wwis/wwsktime.ListClass', {
     method: 'POST',
