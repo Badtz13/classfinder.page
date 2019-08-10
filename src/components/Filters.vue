@@ -57,13 +57,15 @@ export default {
   },
   mounted() {
     this.response.forEach((element) => {
-      if (!this.instructors.includes(element.Instructor)) {
+      if (!this.instructors.includes(element.Instructor) && element.Instructor !== undefined) {
         this.instructors.push(element.Instructor);
       }
-      if (!this.credits.includes(element.Credits)) {
+      if (!this.credits.includes(element.Credits) && element.Credits !== undefined) {
         this.credits.push(element.Credits);
       }
     });
+    this.instructors.sort();
+    this.credits.sort();
   },
   methods: {
     filter() {

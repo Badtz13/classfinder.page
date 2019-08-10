@@ -68,7 +68,7 @@ function parseData(body) {
     // loop through each row and assign a field to each cell
     element.forEach((cell) => {
       // if one of the optional fields' values is too long, skip it
-      if ((fields[fieldIndex] === 'GUR' && cell.length > 10) || cell === 'TBA') {
+      if ((fields[fieldIndex] === 'GUR' && cell.length > 10) || (cell === 'TBA' && fields[fieldIndex] !== 'Time')) {
         fieldIndex += 1;
       } else if (fields[fieldIndex] === 'LabTime' && !/([A-Z]{1,2} {2}\d{1,2}:\d{1,2})/.test(cell)) {
         fieldIndex += 2;
