@@ -4,25 +4,20 @@
     <form
       action="javascript:void(0);"
       name="main">
-      <label>Course ID
+      <label>
+        Course ID
         <input
           v-model="Subject"
           type="text"
-          placeholder="CSCI"
-          required>
+          placeholder="CSCI">
       </label>
-      <label> Term
-        <select
-          v-model="Term"
-          required>
+      <label>
+        Term
+        <select v-model="Term">
           <option value="Winter">Winter</option>
           <option value="Spring">Spring</option>
           <option value="Summer">Summer</option>
-          <option
-            value="Fall"
-            selected>
-            Fall
-          </option>
+          <option value="Fall">Fall</option>
         </select>
       </label>
       <button @click="setParams()">Search</button>

@@ -111,7 +111,11 @@ export default async function finder(subject, termNumber) {
   let data = `${baseData + term}&sel_gur=All&sel_attr=All&sel_site=All`;
   const subjectList = subject.split(',');
   subjectList.forEach((item) => {
-    data += `&sel_subj=${item}`;
+    if (item === 'ALL') {
+      data += '&sel_subj=All';
+    } else {
+      data += `&sel_subj=${item}`;
+    }
   });
 
   data += '&sel_inst=ANY&sel_crse=&begin_hh=0&begin_mi=A&end_hh=0&end_mi=A&sel_cdts=%25';
