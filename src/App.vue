@@ -3,6 +3,11 @@
     <nav>
       <router-link to="/home">Home</router-link>
       <router-link to="/about">About</router-link>
+      <a
+        class="report"
+        href="mailto:badtzmaru139@gmail.com?subject=Classfinder issue">
+        Report an issue
+      </a>
     </nav>
     <router-view/>
   </div>
@@ -44,7 +49,7 @@ a {
   color: var(--primary);
 }
 nav {
-  width: 300px;
+  width: 500px;
   margin: auto;
   display:inline-block;
 }
@@ -52,4 +57,5 @@ nav>a {
   padding: 16px;
   line-height: 2;
 }
+
 </style>
