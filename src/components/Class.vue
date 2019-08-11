@@ -4,7 +4,9 @@
     <div class="colorbar"/>
     <div class="quickbuttons"/>
     <div class="Course">
-      {{ data.Course }}
+      <ClassInfo
+        :course="data.Course"
+        :term="term"/>
       <span class="crn">{{ data.CRN }}</span>
     </div>
     <div class="Name">{{ data.Name }}</div>
@@ -37,17 +39,26 @@
       class="LabTime">{{ data.LabTime }}</div>
     <div
       v-if="data.Requirements || data.Other"
-      class="Requirements"
-    >Requirements: {{ data.Requirements }} {{ data.Other }}</div>
+      class="Requirements">
+      Requirements: {{ data.Requirements }} {{ data.Other }}</div>
   </article>
 </template>
 
 <script>
+import ClassInfo from '@/components/ClassInfo.vue';
+
 export default {
   name: 'Class',
+  components: {
+    ClassInfo,
+  },
   props: {
     data: {
       type: Object,
+      required: true,
+    },
+    term: {
+      type: String,
       required: true,
     },
   },

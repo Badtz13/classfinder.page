@@ -54,12 +54,10 @@ function parseData(body) {
   const classList = [];
   let currentId = 0;
 
-  console.log(parsedData);
 
   for (let i = 1; i < parsedData.length; i += 1) {
     // this attempts to detect the start of a new class block
     if (/([A-Z]{3,4} \d{3})/.test(parsedData[i]) && parsedData[i].length < 9 && !/([A-Z]{3,4} \d{3})/.test(parsedData[i + 1]) && !parsedData[i - 1].endsWith('Fee')) {
-      console.log(currentRow);
       chunks.push(currentRow);
       currentRow = [];
     }
@@ -101,7 +99,6 @@ function parseData(body) {
   // TODO add ability for different sorts
   labeledChunks.sort((a, b) => (parseInt(a.Course.split(' ')[1], 10) - parseInt(b.Course.split(' ')[1], 10)));
 
-  console.log(labeledChunks);
   return { body, labeledChunks };
 }
 

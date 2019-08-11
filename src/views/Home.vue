@@ -31,7 +31,8 @@
         <Class
           v-for="item in filteredData"
           :key="item.CRN"
-          :data="item"/>
+          :data="item"
+          :term="Term"/>
       </div>
       <aside>
         <Filters :response="resData"/>

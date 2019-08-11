@@ -14,7 +14,7 @@
 }
 .donut {
   display: block;
-  margin: 50px auto;
+  margin: 24px auto;
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: var(--primary);
   border-radius: 50%;
