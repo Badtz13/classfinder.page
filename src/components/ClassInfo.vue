@@ -74,7 +74,7 @@ export default {
 }
 
 .course-title:hover {
-  cursor: pointer;
+  cursor: default;
 }
 
 caption {
