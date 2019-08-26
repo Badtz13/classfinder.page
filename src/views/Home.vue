@@ -102,7 +102,7 @@ export default {
         this.requestMade = false;
       }
     },
-    filterData(newData) {
+    filterData(newData) { // recieves data from the Filters component and updates page contents
       this.filteredData = newData;
     },
   },

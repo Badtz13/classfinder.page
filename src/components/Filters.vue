@@ -53,16 +53,11 @@ export default {
   },
   mounted() {
     this.response.forEach((element) => {
-      if (
-        !this.instructors.includes(element.Instructor)
-        && element.Instructor !== undefined
-      ) {
+      // build lists of instructors and credit amounts for filters drop downs
+      if (!this.instructors.includes(element.Instructor) && element.Instructor !== undefined) {
         this.instructors.push(element.Instructor);
       }
-      if (
-        !this.credits.includes(element.Credits)
-        && element.Credits !== undefined
-      ) {
+      if (!this.credits.includes(element.Credits) && element.Credits !== undefined) {
         this.credits.push(element.Credits);
       }
     });
@@ -72,24 +67,24 @@ export default {
   methods: {
     filter() {
       let filteredData = this.response;
-      filteredData = filteredData.filter((item) => {
-        if (
-          this.selectedInstructor
-          && item.Instructor !== this.selectedInstructor
-        ) {
+
+      filteredData = filteredData.filter((item) => { // for each class in results...
+        // discard the item if the instructor doesn't match
+        if (this.selectedInstructor && item.Instructor !== this.selectedInstructor) {
           return false;
         }
+        // discard the item if the number of credits don't match
         if (this.selectedCredits && item.Credits !== this.selectedCredits) {
           return false;
         }
-        if (
-          this.selectedOpen
-          && parseInt(item.Enrolled, 10) >= parseInt(item.Cap, 10)
-        ) {
+        // if open sections only is selected, discard any full classes
+        if (this.selectedOpen && parseInt(item.Enrolled, 10) >= parseInt(item.Cap, 10)) {
           return false;
         }
+        // if there are no reasons to discard the class, keep it
         return true;
       });
+      // pass the filtered data back to the parent element (I know this isn't great)
       this.$parent.filterData(filteredData);
     },
   },
@@ -97,7 +92,6 @@ export default {
 </script>
 
 <style scoped>
-
 #container {
   box-shadow: var(--light-shadow);
   width: 100%;

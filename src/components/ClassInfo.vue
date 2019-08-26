@@ -36,7 +36,7 @@ export default {
     };
   },
   methods: {
-    async getInfo() {
+    async getInfo() { // fetches class description from old classfinder backend
       if (!this.response) {
         const year = new Date();
         const terms = {
@@ -47,9 +47,7 @@ export default {
         };
         const courseArray = this.course.split(' ');
         const course = courseArray[0] + courseArray[1];
-        const url = `https://admin.wwu.edu/pls/wwis/wwsktime.SelText?subj_crse=${year.getFullYear()}${
-          terms[this.term]
-        }0${course}`;
+        const url = `https://admin.wwu.edu/pls/wwis/wwsktime.SelText?subj_crse=${year.getFullYear()}${terms[this.term]}0${course}`;
 
         const request = new Request(
           `https://cors-anywhere.herokuapp.com/${url}`,
