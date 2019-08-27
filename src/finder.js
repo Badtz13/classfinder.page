@@ -127,5 +127,5 @@ export default async function finder(subject, termNumber) {
     body: data,
   });
   // eslint-disable-next-line no-return-await
-  return await parseData(await fetch(request).then(response => response.text()));
+  return parseData(await fetch(request).then(response => response.text()));
 }
