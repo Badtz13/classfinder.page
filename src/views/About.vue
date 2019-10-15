@@ -1,6 +1,5 @@
 <template>
   <main>
-    <h1>About</h1>
     <p>
       Welcome! This site is an attempt at replacing the
       old and bad looking WWU classfinder page.
@@ -16,5 +15,8 @@
 p {
   width: 500px;
   margin:auto;
+}
+a {
+  color: var(--primary);
 }
 </style>
