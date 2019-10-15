@@ -108,7 +108,7 @@ function parseData(body) {
 
 export default async function finder(subject, termNumber) {
   const year = new Date().getFullYear();
-  const term = `${year}${termNumber}0`;
+  const term = `${year + 1}${termNumber}0`;
   const baseData = 'sel_subj=dummy&sel_subj=dummy&sel_gur=dummy&sel_gur=dummy&sel_attr=dummy&sel_site=dummy&sel_day=dummy&sel_open=dummy&sel_crn=&term=';
   let data = `${baseData + term}&sel_gur=All&sel_attr=All&sel_site=All`;
   const subjectList = subject.split(',');
