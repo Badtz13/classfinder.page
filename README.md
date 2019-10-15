@@ -2,9 +2,11 @@
 
 This is an attempt at replacing that horrible WWU classfinder site with a better front end.
 
-Currently works by scraping the old pages, so it's going to take a while to set up a proper connector.
+Currently works by scraping the old pages, which makes it difficult to add new fields to the search ui.
 
 If you have ideas or feedback, feel free to create an issue.
+
+The project really needs design help, so if that's your field and you don't know any CSS, feel free to submit sketches or other drawings and one of the programmers can implement it.
 
 Currently hosted at [https://classfinder.page/](https://classfinder.page/)
 
