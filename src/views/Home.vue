@@ -1,6 +1,5 @@
 <template>
   <main>
-    <h1>WWU Classfinder Replacement</h1>
     <form
       action="javascript:void(0);"
       name="main">
@@ -58,7 +57,7 @@ export default {
   data() {
     return {
       Subject: '',
-      Term: 'Fall',
+      Term: 'Winter',
       resData: {},
       filteredData: {},
       resBody: '',
