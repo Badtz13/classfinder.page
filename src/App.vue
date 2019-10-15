@@ -1,13 +1,9 @@
 <template>
   <div id="app">
+    <h2>WWU Classfinder Replacement</h2>
     <nav>
       <router-link to="/home">Home</router-link>
       <router-link to="/about">About</router-link>
-      <a
-        class="report"
-        href="mailto:badtzmaru139@gmail.com?subject=Classfinder issue">
-        Report an issue
-      </a>
     </nav>
     <router-view/>
   </div>
@@ -16,7 +12,9 @@
 <style>
 
 :root {
-  --primary: #0083d6;
+  --primary: #38B2AC;
+
+
   --light-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
   --hover-shadow: 2px 6px 30px rgba(0, 0, 0, 0.3);
 }
@@ -27,7 +25,7 @@
   font-weight: normal;
 }
 
-h1 {
+h2 {
   color: var(--primary);
 }
 
@@ -44,18 +42,27 @@ body,
 </style>
 
 <style scoped>
-a {
-  text-decoration: underline;
-  color: var(--primary);
-}
 nav {
   width: 500px;
   margin: auto;
-  display:inline-block;
+  display:block;
+  padding-bottom: 16px;
 }
+
 nav>a {
-  padding: 16px;
-  line-height: 2;
+color: var(--primary);
+text-decoration: none;
+display: inline-block;
+text-decoration: none;
+line-height: 2;
+margin: 0px 8px;
+font-size: 16px;
+}
+
+.router-link-active,
+.router-link-exact-active {
+
+  border-bottom: 2px solid var(--primary);
 }
 
 </style>
